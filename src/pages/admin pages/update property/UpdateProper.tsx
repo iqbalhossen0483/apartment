@@ -1,8 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropertyForm from '../sharedcomponent/PropertyForm'
 
 const UpdateProper = () => {
-
   function updateProperty(data: Property) {
     console.log("data from update", data);
   }

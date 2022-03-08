@@ -9,7 +9,7 @@ interface Property{
     area: string;
     description: string;
     img?: ArrayLike<FileList[0]>;
-    imgurl?: string;
+    imgUrl?: string;
     imgId?: string;
 }
 

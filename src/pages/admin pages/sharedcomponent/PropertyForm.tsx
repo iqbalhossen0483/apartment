@@ -1,12 +1,12 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 interface Props{
   propertyData?: Property | null;
-  action(data: Property): void
+  action(data: Property): void;
 }
 
-const PropertyForm:FC<Props> = ({propertyData = null, action}) => {
+const PropertyForm: FC<Props> = ({ propertyData = null, action }) => {
   const { handleSubmit, register, reset } = useForm<Property>();
 
   function onSubmit(data:Property) {

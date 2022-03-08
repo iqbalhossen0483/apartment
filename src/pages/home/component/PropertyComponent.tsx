@@ -1,11 +1,12 @@
 import { FC } from 'react';
-import { properties } from '../services/services';
 
 interface Props{
-    header?: string
+    header?: string;
+    data: Property[] | null;
 }
 
-const PropertyComponent:FC<Props> = ({header}) => {
+const PropertyComponent: FC<Props> = ({ header, data }) => {
+    console.log(data);
     return (
         <div className='mx-16'>
             {header &&
@@ -14,13 +15,13 @@ const PropertyComponent:FC<Props> = ({header}) => {
                 </h1>
             }
             <div className='grid grid-cols-3 gap-10'>
-                {
-                    properties.map((item, index) => {
+                {data &&
+                    data.map((item, index) => {
                         return (
                             <div key={index}>
                                 <img
-                                    className='property-img'
-                                    src={item.imgurl}
+                                    className='property-img object-cover'
+                                    src={item.imgUrl}
                                     alt=""
                                 />
                                 <p className='price'>{ item.price }</p>
