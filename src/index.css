@@ -20,7 +20,7 @@
 @layer  components{
 
   form{
-    @apply grid grid-cols-3 justify-center items-center w-2/5 mx-auto border rounded my-10  p-10
+    @apply grid grid-cols-3 justify-center items-center mx-auto border rounded my-10  p-10
   }
   form h2{
     @apply mb-4 col-span-3
@@ -28,11 +28,14 @@
   form p{
     @apply text-xl font-medium
   }
-  form input{
-    @apply text-xl py-1 px-3 border rounded my-2 col-span-2
+  form input, form textarea{
+    @apply text-xl py-1 px-3 border rounded my-2 col-span-2 focus:outline-none
   }
   form button{
     @apply border rounded px-7 py-2 text-xl bg-primary text-white mt-4 col-span-3 w-fit mx-auto hover:bg-white hover:text-primary font-semibold
+  }
+  form button:disabled{
+    @apply cursor-not-allowed
   }
 
   /* header component */
@@ -81,6 +84,22 @@
   .about{
     @apply grid grid-cols-2 gap-6 mx-16 my-12 items-center mt-20
   }
+
+
+  /* deshboard */
+  .deshboard-container, .my-account-container{
+    @apply grid grid-cols-6 gap-5 min-h-set
+  }
+  .deshboard-container .menus, .my-account-container .menus{
+    @apply  pl-5 py-10 font-semibold border-gray flex flex-col
+  }
+  .deshboard-container .menus a{
+    @apply my-2 leading-5
+  }
+  .deshboard-container .front-page, .my-account-container .front-page{
+    @apply flex justify-center items-center h-full text-3xl font-semibold
+  }
+
 };
 
 @layer utilities{

@@ -20,7 +20,7 @@ const PropertyComponent:FC<Props> = ({header}) => {
                             <div key={index}>
                                 <img
                                     className='property-img'
-                                    src={item.img}
+                                    src={item.imgurl}
                                     alt=""
                                 />
                                 <p className='price'>{ item.price }</p>
@@ -29,7 +29,7 @@ const PropertyComponent:FC<Props> = ({header}) => {
                                         className="fa fa-map-marker text-primary mr-2"
                                         aria-hidden="true"
                                     />
-                                    {item.loaction}
+                                    {item.location}
                                 </p>
                                 <div className='grid grid-cols-2 items-center'>
                                     <p className='text-2xl font-semibold my-3'>

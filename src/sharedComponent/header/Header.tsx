@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import useFirebase from '../../Hooks/useFirebase';
 
 const Header: () => JSX.Element = () => {
     const [stiky, setStiky] = useState<boolean>(false);
+    const { user, logOut } = useFirebase();
 
 
     function stikyHandler(): void {
@@ -37,19 +39,39 @@ const Header: () => JSX.Element = () => {
                 </Link>
             </div>
             <div className='menus col-span-2 flex items-center'>
-                <Link to="/myaccount">
-                    ACCOUNT
-                </Link>
-                <Link to="/deshboard">
-                    DESHBOARD
-                </Link>
-                <button className='mb-5'>
-                    <i className="fa fa-shopping-bag" aria-hidden="true"/>
+                {user && <>
+                    <Link to="/myaccount">
+                        ACCOUNT
+                    </Link>
+                    <Link to="/deshboard">
+                        DESHBOARD
+                    </Link>
+                </>}
+                <button>
                     WISHLIST
                 </button>
-                <Link to="/login">
-                    LOGIN/REGISTER
-                </Link>
+                {!user &&
+                    <Link to="/login">
+                        LOGIN/REGISTER
+                    </Link>
+                }
+                {user?.photoURL ?
+                    <img
+                        className='h-10 w-10 rounded-full'
+                        src={user.photoURL!}
+                        alt=""
+                    />
+                    :
+                    <p className='font-medium'>
+                        {user?.displayName?.split(" ")[0]}
+                    </p>
+                }
+                {user &&
+                    <i onClick={logOut}
+                        className="fa fa-sign-out ml-2"
+                        aria-hidden="true"
+                    />
+                }
             </div>
         </header>
     );

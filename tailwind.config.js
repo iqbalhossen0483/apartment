@@ -8,6 +8,9 @@ module.exports = {
         "light-gray": "#80808065",
         "gray": "#808080d3",
         "primary": "#3c6e71"
+      },
+      minHeight: {
+        "set": "66.2vh"
       }
     },
   },

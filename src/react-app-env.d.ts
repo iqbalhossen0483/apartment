@@ -1,19 +1,20 @@
 /// <reference types="react-scripts" />
 
 interface Property{
-    img: string;
-    price: number;
-    loaction: string;
     name: string;
+    price: number;
+    location: string;
     room: number;
     bed: number
     area: string;
+    description: string;
+    img?: ArrayLike<FileList[0]>;
+    imgurl?: string;
+    imgId?: string;
 }
 
 interface userLogin{
+    name: string;
     email: string;
     passwoard: string
-}
-interface userRegister extends userLogin{
-    name: string;
 }
