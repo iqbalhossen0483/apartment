@@ -1,13 +1,101 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+@layer base{
+  h1,h2,h3{
+    @apply text-center font-semibold
+  }
+  h1{
+    @apply text-5xl
+  }
+  h2{
+    @apply text-3xl
+  }
+  h3{
+    @apply text-2xl
+  }
+};
+
+@layer  components{
+
+  form{
+    @apply grid grid-cols-3 justify-center items-center w-2/5 mx-auto border rounded my-10  p-10
+  }
+  form h2{
+    @apply mb-4 col-span-3
+  }
+  form p{
+    @apply text-xl font-medium
+  }
+  form input{
+    @apply text-xl py-1 px-3 border rounded my-2 col-span-2
+  }
+  form button{
+    @apply border rounded px-7 py-2 text-xl bg-primary text-white mt-4 col-span-3 w-fit mx-auto hover:bg-white hover:text-primary font-semibold
+  }
+
+  /* header component */
+  .header{
+    @apply grid grid-cols-5 px-16 py-3 bg-white sticky top-0 z-50 justify-center items-center
+  }
+
+  .header .menus a, .header .menus button{
+    @apply px-3 font-medium
+  }
+
+  /* banner section */
+  .banner{
+    @apply  overflow-hidden relative mx-16
+  }
+  .banner .caption-wrapper{
+    @apply absolute top-0 left-0 w-full h-full bg-light-gray text-right py-14 px-10 grid grid-cols-4
+  }
+
+  /* properties */
+  .price{
+    @apply text-xl font-semibold bg-primary px-5 py-2 w-fit mt-5 mb-2 text-white
+  }
+  .see-more-btn{
+    @apply text-xl hover:bg-primary px-4 py-1 hover:text-white rounded-3xl ml-5 flex justify-between items-center border
+  }
+  .see-more-btn .arrow{
+    @apply text-3xl hidden
+  }
+
+  /* approach */
+  .approach{
+    @apply grid grid-cols-2 my-32 mx-16 gap-20
+  }
+  .approach > div{
+    @apply relative
+  }
+  .approach div .float-img{
+    @apply absolute top-28 left-52 z-50 w-96
+  }
+  .property-btn{
+    @apply text-white bg-primary px-7 py-2 text-xl mt-5
+  }
+
+  /* about */
+  .about{
+    @apply grid grid-cols-2 gap-6 mx-16 my-12 items-center mt-20
+  }
+};
+
+@layer utilities{
+  .banner{
+    height: 500px;
+  }
+  .banner img{
+    height: 500px;
+    object-fit: cover;
+  }
+  .price::before{
+    content: "৳";
+    height: 20px;
+    width: 20px;
+    font-size: 1.4em;
+    margin-right: 4px;
+  }
+};

@@ -1,0 +1,22 @@
+.property-img, .about img, .property-btn, .approach >div{
+  transition: all 0.3s linear;
+}
+.property-img:hover{
+  transform: scale(1.1);
+}
+.about img:hover{
+    transform: rotateY(-10deg);
+}
+.see-more-btn, .see-more-btn .arrow{
+    transition: all 0.5s linear;
+}
+.see-more-btn:hover .arrow{
+    display: block;
+}
+
+.property-btn:hover{
+    transform: scale(0.8);
+}
+.approach .images:hover{
+    transform: scale(0.9);
+}
