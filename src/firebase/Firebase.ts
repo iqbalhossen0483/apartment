@@ -84,7 +84,10 @@ const Firebase = (): FirebaseSchema => {
     function getUser(email: string) {
         fetch(`http://localhost:5000/users/${email}`)
             .then(res => res.json())
-            .then(data => setUserFromDb(data));
+            .then(data => {
+                setUserFromDb(data);
+                setLoading(false);
+            });
     }
 
     useEffect(() => {
@@ -99,8 +102,8 @@ const Firebase = (): FirebaseSchema => {
             }
             else {
                 setUser(null);
+                setLoading(false);
             }
-            setLoading(false);
         })
     },[])
 

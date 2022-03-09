@@ -1,14 +1,35 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
+import useFirebase from '../../../Hooks/useFirebase';
 
 const ManageUser = () => {
   const [users, setUsers] = useState<DbUser[] | null>(null);
   const [form, setForm] = useState<number>(-1);
+  const [update, setUpdate] = useState(false);
 
   useEffect(() => {
     fetch("http://localhost:5000/users")
       .then(res => res.json())
       .then(data => setUsers(data));
-  }, []);
+  }, [update]);
+
+  function updateUser(email:string, role: string) {
+    fetch(`http://localhost:5000/users/${email}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json"
+      },
+      body: JSON.stringify({role})
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.modifiedCount > 0) {
+          alert("user role updated");
+          setForm(-1);
+          if (update) setUpdate(false);
+          else setUpdate(true);
+        }
+      })
+  };
 
   function handleForm(index: number) {
     if (index === form) {
@@ -48,9 +69,15 @@ const ManageUser = () => {
               <div
                 className={`menu ${form === index ? "block" : "hidden"}`}
               >
-                  <button>user</button>
-                  <button>editor</button>
-                  <button>admin</button>
+                <button onClick={()=>updateUser(item.email!, "user")}>
+                  user
+                </button>
+                <button onClick={()=>updateUser(item.email!, "editor")}>
+                  editor
+                </button>
+                <button onClick={()=>updateUser(item.email!, "admin")}>
+                  admin
+                </button>
               </div>
             </div>
           )

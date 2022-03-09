@@ -19,6 +19,7 @@ import MyOrder from "./pages/user pages/my order/MyOrder";
 import MyProfile from "./pages/user pages/my profile/MyProfile";
 import Wishlist from "./pages/user pages/wishlist/Wishlist";
 import PrivateRouter from "./authenticate/PrivateRouter";
+import AdminRoute from "./authenticate/AdminRoute";
 
 function App() {
   return (
@@ -41,12 +42,12 @@ function App() {
         </Route>
 
         {/* admin router */}
-        <Route path="/deshboard" element={<Deshboard />}>
-          <Route path="addproperty" element={<AddProperty />} />
-          <Route path="updateproperty/:id" element={<UpdateProper />} />
-          <Route path="manageproperty" element={<ManageProperty />} />
-          <Route path="manageorder" element={<ManageOrder />} />
-          <Route path="manageuser" element={<ManageUser />} />
+        <Route path="/deshboard" element={<AdminRoute element={<Deshboard />} />}>
+          <Route path="addproperty" element={<AdminRoute element={<AddProperty />} />} />
+          <Route path="updateproperty/:id" element={<AdminRoute element={<UpdateProper />} />} />
+          <Route path="manageproperty" element={<AdminRoute element={<ManageProperty />} />} />
+          <Route path="manageorder" element={<AdminRoute element={<ManageOrder />} />} />
+          <Route path="manageuser" element={<AdminRoute element={<ManageUser />} />} />
         </Route>
 
         {/* not found route */}

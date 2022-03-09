@@ -38,14 +38,19 @@ const Header: () => JSX.Element = () => {
                 </Link>
             </div>
             <div className='menus col-span-2 flex items-center'>
-                {firebase?.user && <>
+                {firebase?.user && 
                     <Link to="/myaccount">
                         ACCOUNT
                     </Link>
+                }
+                {
+                    firebase?.user &&
+                    firebase?.userFromDb &&
+                    firebase.userFromDb?.role !== "user" &&
                     <Link to="/deshboard">
                         DESHBOARD
                     </Link>
-                </>}
+                }
                 <button>
                     WISHLIST
                 </button>
