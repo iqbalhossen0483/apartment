@@ -13,6 +13,7 @@ const AddProperty = () => {
     form.append("room", data.room.toString());
     form.append("bed", data.bed.toString());
     form.append("area", data.area);
+    form.append("description", data.description);
     if (data.img) {
       form.append("img", data.img[0]);
     }
@@ -25,7 +26,6 @@ const AddProperty = () => {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         if (data.insertedId) {
           alert("property added");
         }

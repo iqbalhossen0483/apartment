@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface Props{
     header?: string;
@@ -6,7 +7,7 @@ interface Props{
 }
 
 const PropertyComponent: FC<Props> = ({ header, data }) => {
-    console.log(data);
+    const navigate = useNavigate();
     return (
         <div className='mx-16'>
             {header &&
@@ -37,7 +38,9 @@ const PropertyComponent: FC<Props> = ({ header, data }) => {
                                         {item.name}
                                     </p>
                                     <div>
-                                        <button className='see-more-btn'>
+                                        <button
+                                            onClick={()=>navigate(`/property/${item._id}`)}
+                                            className='see-more-btn'>
                                             <span>see more</span>
                                             <span className='arrow'>&#8594;</span>
                                         </button>

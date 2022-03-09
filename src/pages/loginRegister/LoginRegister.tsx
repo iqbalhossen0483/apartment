@@ -1,41 +1,68 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import useFirebase from '../../Hooks/useFirebase';
+
+interface State{
+    from: From
+}
+interface From{    
+    pathname: string;
+};
 
 const LoginRegister = () => {
     const { handleSubmit, register, reset } = useForm<userLogin>();
     const [login, setLogin] = useState<boolean>(true);
     const navigate = useNavigate();
-    const { loginWithGoolge, signUpWithEmail, addUserName, loading, loginWithEmail } = useFirebase();
+    const firebase = useFirebase();
+    const location = useLocation();
+
+    const state = location.state as State;   
+    let redirectUrl = state?.from?.pathname || "/";
 
     function onSubmit(data: userLogin) {
         if (!login) {
-            signUpWithEmail(data.email, data.passwoard)
+            firebase?.signUpWithEmail(data.email, data.passwoard)
                 .then(result => {
-                    addUserName(data.name);
-                    reset();
-                    navigate("/");
-                })
+                    if (result.user) {
+                        firebase?.addUserName(data.name);
+                        const dataForDb = {
+                            displayName: data.name,
+                            email: data.email,
+                            role: "user"
+                        };
+                        firebase?.createUser(dataForDb);
+                        reset();
+                        navigate(redirectUrl);
+                    }
+                });
         }
         else {
-            loginWithEmail(data.email, data.passwoard)
+            firebase?.loginWithEmail(data.email, data.passwoard)
                 .then(result => {
                     reset();
-                    navigate("/");
+                    navigate(redirectUrl);
                 })
                 .catch((err) => {
                     alert(err.message)
-                })
-        }
-    }
+                });
+        };
+    };
 
     //google login
     function googleLogin() {
-        loginWithGoolge()
+        firebase?.loginWithGoolge()
             .then(result => {
-                navigate("/");
-            })
+                if (result.user) {
+                    const dataForDb = {
+                        displayName: result.user.displayName,
+                        email: result.user.email,
+                        role: "user"
+                    };
+                    firebase?.createUser(dataForDb);
+                    navigate(redirectUrl);
+                }
+            });
     }
 
     function handlelogIn() {
@@ -50,11 +77,11 @@ const LoginRegister = () => {
                 <h2>Please{login ? " Login" : " Register"}</h2>
                 
                 {!login && <>
-                <p>Name:</p>
-                <input
-                    {...register("name", { required: true })}
-                    placeholder="Your name"
-                    type="text"
+                    <p>Name:</p>
+                    <input
+                        {...register("name", { required: true })}
+                        placeholder="Your name"
+                        type="text"
                     />
                 </>}
 
@@ -70,7 +97,7 @@ const LoginRegister = () => {
                     placeholder="Your passwoard"
                     type="password"
                 />
-                <button disabled={loading}>
+                <button disabled={firebase?.loading}>
                     {login ? "Login" : "Register"}
                 </button>
                 <p className='col-span-3 text-center mt-5 mb-2'>

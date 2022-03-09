@@ -4,8 +4,7 @@ import useFirebase from '../../Hooks/useFirebase';
 
 const Header: () => JSX.Element = () => {
     const [stiky, setStiky] = useState<boolean>(false);
-    const { user, logOut } = useFirebase();
-
+    const firebase = useFirebase();
 
     function stikyHandler(): void {
         if (window.scrollY > 60) {
@@ -39,7 +38,7 @@ const Header: () => JSX.Element = () => {
                 </Link>
             </div>
             <div className='menus col-span-2 flex items-center'>
-                {user && <>
+                {firebase?.user && <>
                     <Link to="/myaccount">
                         ACCOUNT
                     </Link>
@@ -50,24 +49,24 @@ const Header: () => JSX.Element = () => {
                 <button>
                     WISHLIST
                 </button>
-                {!user &&
+                {!firebase?.user &&
                     <Link to="/login">
                         LOGIN/REGISTER
                     </Link>
                 }
-                {user?.photoURL ?
+                {firebase?.user?.photoURL ?
                     <img
                         className='h-10 w-10 rounded-full'
-                        src={user.photoURL!}
+                        src={firebase.user.photoURL!}
                         alt=""
                     />
                     :
                     <p className='font-medium'>
-                        {user?.displayName?.split(" ")[0]}
+                        {firebase?.user?.displayName?.split(" ")[0]}
                     </p>
                 }
-                {user &&
-                    <i onClick={logOut}
+                {firebase?.user &&
+                    <i onClick={firebase.logOut}
                         className="fa fa-sign-out ml-2"
                         aria-hidden="true"
                     />

@@ -19,6 +19,7 @@ const PropertyForm: FC<Props> = ({ propertyData = null, action }) => {
       <p>Name:</p>
       <input
         {...register("name", { required: true })}
+        defaultValue={propertyData?.name}
         placeholder="property name"
         type="text"
       />
@@ -27,12 +28,14 @@ const PropertyForm: FC<Props> = ({ propertyData = null, action }) => {
       <input
         {...register("price", { required: true })}
         placeholder="property price"
+        defaultValue={propertyData?.price}
         type="number"
       />
 
       <p>Location:</p>
       <input
         {...register("location", { required: true })}
+        defaultValue={propertyData?.location}
         placeholder="property location"
         type="text"
       />
@@ -40,6 +43,7 @@ const PropertyForm: FC<Props> = ({ propertyData = null, action }) => {
       <p>Room:</p>
       <input
         {...register("room", { required: true })}
+        defaultValue={propertyData?.room}
         placeholder="property room"
         type="number"
       />
@@ -47,6 +51,7 @@ const PropertyForm: FC<Props> = ({ propertyData = null, action }) => {
       <p>Bed:</p>
       <input
         {...register("bed", { required: true })}
+        defaultValue={propertyData?.bed}
         placeholder="property bed"
         type="number"
       />
@@ -54,6 +59,7 @@ const PropertyForm: FC<Props> = ({ propertyData = null, action }) => {
       <p>Area:</p>
       <input
         {...register("area", { required: true })}
+        defaultValue={propertyData?.area}
         placeholder="property area"
         type="text"
       />
@@ -66,6 +72,7 @@ const PropertyForm: FC<Props> = ({ propertyData = null, action }) => {
       <textarea
         className='col-span-3'
         {...register("description", { required: true })}
+        defaultValue={propertyData?.description}
         cols={50}
         rows={10}
         placeholder="Some description"

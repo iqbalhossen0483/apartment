@@ -31,11 +31,17 @@
   form input, form textarea{
     @apply text-xl py-1 px-3 border rounded my-2 col-span-2 focus:outline-none
   }
-  form button{
+  form button, .btn{
     @apply border rounded px-7 py-2 text-xl bg-primary text-white mt-4 col-span-3 w-fit mx-auto hover:bg-white hover:text-primary font-semibold
   }
   form button:disabled{
     @apply cursor-not-allowed
+  }
+  button:disabled{
+    @apply bg-gray cursor-not-allowed
+  }
+  .spinner{
+    @apply h-full flex justify-center items-center text-xl
   }
 
   /* header component */
@@ -100,6 +106,80 @@
     @apply flex justify-center items-center h-full text-3xl font-semibold
   }
 
+  /* manage property */
+  .manage-property{
+    @apply m-10 border rounded p-5 text-center
+  }
+  .manage-property .manage-header{
+    @apply grid grid-cols-3 gap-5 pb-5 text-xl font-medium items-center
+  }
+  .manage-property-item{
+    @apply grid grid-cols-4 gap-5 py-5 text-xl border-t
+  }
+  .manage-property-btn{
+    @apply hidden transition-all
+  }
+  .manage-property-item:hover .manage-property-btn{
+    @apply block
+  }
+
+  /* manage user */
+  .manage-user, .manage-order{
+    @apply m-5 mt-10 text-xl border rounded p-5
+  }
+  .manage-user .item, .manage-order .item{
+    @apply grid grid-cols-3 gap-6 py-5
+  }
+  .manage-user .item .menu{
+    @apply bg-white rounded z-30 shadow absolute -top-5 right-3
+  }
+  .manage-user .item .menu button{
+    @apply block px-5 py-2 hover:bg-slate-50 w-full
+  }
+
+  /* manage order */
+  .manage-order .order{
+    @apply grid grid-cols-5 py-3 gap-5 border-t relative
+  }
+  .manage-order .order .menu{
+    @apply bg-white rounded z-30 shadow absolute top-0 right-0
+  }
+  .manage-order .order .menu button{
+    @apply block px-5 py-2 hover:bg-slate-50 w-full
+  }
+
+
+  /* property details */
+  .property-details-container{
+    @apply px-32 grid grid-cols-2 gap-5 mt-14 overflow-hidden
+  }
+  .property-img-details{
+    @apply w-full h-96 object-cover
+  }
+
+  /* my account */
+  .my-account-container{
+    @apply grid-cols-6
+  }
+
+  /* profile */
+  .profile-container .item{
+    @apply grid grid-cols-6 my-3 border-b border-gray pb-2 text-xl
+  }
+  .profile-container .item p{
+    @apply col-span-4
+  }
+  .profile-container .item span{
+    @apply col-span-2
+  }
+
+  /* my order */
+  .my-order{
+    @apply m-5 mt-10 p-5 border rounded
+  }
+  .my-order .item{
+    @apply grid grid-cols-4 gap-5 py-3 text-xl
+  }
 };
 
 @layer utilities{
