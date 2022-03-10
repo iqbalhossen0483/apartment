@@ -6,7 +6,7 @@ const ManageProperty = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:5000/property")
+    fetch(" https://apartment-sales.herokuapp.com/property")
       .then(res => res.json())
       .then(data => setProperty(data));
   }, []);
@@ -14,7 +14,7 @@ const ManageProperty = () => {
   function deleteProperty(id: string, imgId: string) {
     const confirm = window.confirm("Are you sure to delete?");
     if (confirm) {
-      fetch(`http://localhost:5000/property/${id}`, {
+      fetch(` https://apartment-sales.herokuapp.com/property/${id}`, {
         method: "DELETE",
         headers: {
           "content-type": "application/json"

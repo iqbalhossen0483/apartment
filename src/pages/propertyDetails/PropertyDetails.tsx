@@ -8,7 +8,7 @@ const PropertyDetails = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch(`http://localhost:5000/property/${id}`)
+        fetch(` https://apartment-sales.herokuapp.com/property/${id}`)
             .then(res => res.json())
             .then(data => setProperty(data));
     }, []);

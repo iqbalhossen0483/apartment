@@ -7,13 +7,13 @@ const ManageUser = () => {
   const [update, setUpdate] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:5000/users")
+    fetch(" https://apartment-sales.herokuapp.com/users")
       .then(res => res.json())
       .then(data => setUsers(data));
   }, [update]);
 
   function updateUser(email:string, role: string) {
-    fetch(`http://localhost:5000/users/${email}`, {
+    fetch(` https://apartment-sales.herokuapp.com/users/${email}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json"

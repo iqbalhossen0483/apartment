@@ -12,6 +12,7 @@ interface Property{
     img?: ArrayLike<FileList[0]>;
     imgUrl?: string;
     imgId?: string;
+    [index: string]: string;
 }
 
 interface DbUser{

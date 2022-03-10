@@ -1,24 +1,37 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import useFirebase from '../../../Hooks/useFirebase';
 
 interface Props{
   propertyData?: Property | null;
   action(data: Property): void;
+  header: string;
 }
 
-const PropertyForm: FC<Props> = ({ propertyData = null, action }) => {
+const PropertyForm: FC<Props> = ({ propertyData = null, action, header }) => {
   const { handleSubmit, register, reset } = useForm<Property>();
+  const [isRequired, setIsRequired] = useState<boolean>(true);
 
-  function onSubmit(data:Property) {
+  useEffect(() => {
+    if (header === "Add Property") {
+      setIsRequired(true);
+    }
+    else {
+      setIsRequired(false);
+    }
+  }, []);
+
+
+  function onSubmit(data: Property) {
     action(data);
-  }
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <h2>Add Property</h2>
+      <h2>{ header }</h2>
       <p>Name:</p>
       <input
-        {...register("name", { required: true })}
+        {...register("name", { required: isRequired })}
         defaultValue={propertyData?.name}
         placeholder="property name"
         type="text"
@@ -26,7 +39,7 @@ const PropertyForm: FC<Props> = ({ propertyData = null, action }) => {
 
       <p>Price:</p>
       <input
-        {...register("price", { required: true })}
+        {...register("price", { required: isRequired })}
         placeholder="property price"
         defaultValue={propertyData?.price}
         type="number"
@@ -34,7 +47,7 @@ const PropertyForm: FC<Props> = ({ propertyData = null, action }) => {
 
       <p>Location:</p>
       <input
-        {...register("location", { required: true })}
+        {...register("location", { required: isRequired })}
         defaultValue={propertyData?.location}
         placeholder="property location"
         type="text"
@@ -42,7 +55,7 @@ const PropertyForm: FC<Props> = ({ propertyData = null, action }) => {
 
       <p>Room:</p>
       <input
-        {...register("room", { required: true })}
+        {...register("room", { required: isRequired })}
         defaultValue={propertyData?.room}
         placeholder="property room"
         type="number"
@@ -50,7 +63,7 @@ const PropertyForm: FC<Props> = ({ propertyData = null, action }) => {
 
       <p>Bed:</p>
       <input
-        {...register("bed", { required: true })}
+        {...register("bed", { required: isRequired })}
         defaultValue={propertyData?.bed}
         placeholder="property bed"
         type="number"
@@ -58,20 +71,20 @@ const PropertyForm: FC<Props> = ({ propertyData = null, action }) => {
 
       <p>Area:</p>
       <input
-        {...register("area", { required: true })}
+        {...register("area", { required: isRequired })}
         defaultValue={propertyData?.area}
         placeholder="property area"
         type="text"
       />
       <p>Image:</p>
       <input
-        {...register("img", { required: true })}
+        {...register("img")}
         placeholder="property image"
         type="file"
       />
       <textarea
         className='col-span-3'
-        {...register("description", { required: true })}
+        {...register("description", { required: isRequired })}
         defaultValue={propertyData?.description}
         cols={50}
         rows={10}

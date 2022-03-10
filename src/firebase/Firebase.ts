@@ -68,7 +68,7 @@ const Firebase = (): FirebaseSchema => {
     }
 
     function createUser(data: DbUser) {     
-        fetch("http://localhost:5000/users", {
+        fetch(" https://apartment-sales.herokuapp.com/users", {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -82,7 +82,7 @@ const Firebase = (): FirebaseSchema => {
     };
 
     function getUser(email: string) {
-        fetch(`http://localhost:5000/users/${email}`)
+        fetch(` https://apartment-sales.herokuapp.com/users/${email}`)
             .then(res => res.json())
             .then(data => {
                 setUserFromDb(data);
@@ -116,7 +116,7 @@ const Firebase = (): FirebaseSchema => {
         user,
         loading,
         createUser,
-        userFromDb
+        userFromDb,
     }
 }
 

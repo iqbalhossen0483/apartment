@@ -1,10 +1,13 @@
-import { useState } from "react";
+import useFirebase from "../../../Hooks/useFirebase";
 import PropertyForm from "../sharedcomponent/PropertyForm";
 
 
 const AddProperty = () => {
   
   function addProperty(data: Property) {
+    if (data.img?.length === 0) {
+      return alert("Image is required");
+    };
     const form = new FormData();
 
     form.append("name", data.name);
@@ -20,7 +23,7 @@ const AddProperty = () => {
     else {
       return alert("image is required");
     };
-    fetch("http://localhost:5000/property", {
+    fetch(" https://apartment-sales.herokuapp.com/property", {
       method: "POST",
       body: form
     })
@@ -31,12 +34,14 @@ const AddProperty = () => {
         }
       })
       .catch(err => {
-      })
+        
+      });
   }
   
   return (
     <div className='px-10'>
       <PropertyForm
+        header="Add Property"
         action={addProperty}
       />
     </div>

@@ -7,7 +7,7 @@
     @apply text-center font-semibold
   }
   h1{
-    @apply text-5xl
+    @apply text-3xl lg:text-5xl
   }
   h2{
     @apply text-3xl
@@ -46,7 +46,7 @@
 
   /* header component */
   .header{
-    @apply grid grid-cols-5 px-16 py-3 bg-white sticky top-0 z-50 justify-center items-center
+    @apply hidden lg:grid grid-cols-5 px-16 py-3 bg-white sticky top-0 z-50 justify-center items-center
   }
 
   .header .menus a, .header .menus button{
@@ -55,10 +55,16 @@
 
   /* banner section */
   .banner{
-    @apply  overflow-hidden relative mx-16
+    @apply  relative
   }
   .banner .caption-wrapper{
-    @apply absolute top-0 left-0 w-full h-full bg-light-gray text-right py-14 px-10 grid grid-cols-4
+    @apply absolute top-0 left-0 w-full h-full bg-light-gray text-right py-14 px-3 lg:px-10 lg:grid grid-cols-4
+  }
+  .search-wrapper{
+    @apply bg-white rounded-b shadow-2xl absolute top-full right-0 lg:right-7 z-40 w-full lg:w-3/5 mx-auto text-center overflow-auto max-h-96 mt-1
+  } 
+  .search-wrapper .item{
+    @apply grid grid-cols-3 gap-3 py-3 border-b items-center text-xl md:text-2xl
   }
 
   /* properties */
@@ -74,13 +80,13 @@
 
   /* approach */
   .approach{
-    @apply grid grid-cols-2 my-32 mx-16 gap-20
+    @apply lg:grid grid-cols-2 my-32 gap-20
   }
   .approach > div{
     @apply relative
   }
   .approach div .float-img{
-    @apply absolute top-28 left-52 z-50 w-96
+    @apply absolute top-28 left-52 z-50 w-96 hidden lg:block
   }
   .property-btn{
     @apply text-white bg-primary px-7 py-2 text-xl mt-5
@@ -88,7 +94,7 @@
 
   /* about */
   .about{
-    @apply grid grid-cols-2 gap-6 mx-16 my-12 items-center mt-20
+    @apply lg:grid grid-cols-2 gap-6 my-12 items-center mt-20
   }
 
 
@@ -151,7 +157,7 @@
 
   /* property details */
   .property-details-container{
-    @apply px-32 grid grid-cols-2 gap-5 mt-14 overflow-hidden
+    @apply px-5 lg:px-32 lg:grid grid-cols-2 gap-5 mt-14 overflow-hidden
   }
   .property-img-details{
     @apply w-full h-96 object-cover
@@ -183,13 +189,6 @@
 };
 
 @layer utilities{
-  .banner{
-    height: 500px;
-  }
-  .banner img{
-    height: 500px;
-    object-fit: cover;
-  }
   .price::before{
     content: "৳";
     height: 20px;

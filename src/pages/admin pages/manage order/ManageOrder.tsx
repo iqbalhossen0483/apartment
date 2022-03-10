@@ -1,15 +1,48 @@
 import { useEffect, useState } from "react";
+import { DebounceInput } from "react-debounce-input";
 
 const ManageOrder = () => {
-  const [orders, setOrder] = useState<Order[] | null>(null);
+  const [orders, setOrder] = useState<Order[] | undefined>(undefined);
   const [form, setForm] = useState<number>(-1);
+  const [update, setUpdate] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:5000/orders")
+    fetch(" https://apartment-sales.herokuapp.com/orders")
       .then(res => res.json())
       .then(data => setOrder(data));
-  }, []);
+  }, [update]);
 
+
+  function updateStatus(id:string, status: string) {
+    fetch(` https://apartment-sales.herokuapp.com/orders/${id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json"
+      },
+      body: JSON.stringify({status})
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.modifiedCount > 0) {
+          alert("order status updated");
+          setForm(-1);
+          if (update) setUpdate(false);
+          else setUpdate(true);
+        }
+      })
+  };
+
+  function filterOrder(text: string) {
+    if (text) {
+      fetch(` https://apartment-sales.herokuapp.com/orders/filter/${text}`)
+        .then(res => res.json())
+        .then(data => setOrder(data));
+    }
+    else {
+      if (update) setUpdate(false);
+      else setUpdate(true);
+    }
+  }
 
   function handleForm(index: number) {
     if (index === form) {
@@ -18,7 +51,6 @@ const ManageOrder = () => {
     else {
       setForm(index);
     }
-    console.log(form);
   }
 
   return (
@@ -26,7 +58,17 @@ const ManageOrder = () => {
       <div className="item font-medium pb-5 text-center">
         <p>Product details</p>
         <p>Cutomer details</p>
-        <p></p>
+        <div>
+          <select
+            onChange={(e)=>filterOrder(e.target.value)}
+            className='border rounded px-2'
+          >
+            <option value=""> All </option>
+            <option value="Pending">Pending </option>
+            <option  value="Approved"> Approved</option>
+            <option value="Cancel"> Cancel</option>
+          </select>
+        </div>
       </div>
       {
         orders?.map((item, index) => {
@@ -80,7 +122,7 @@ const ManageOrder = () => {
                 <p className="text-primary">{item.status}</p>
                 <button
                   onClick={()=>handleForm(index)}
-                  className='border rounded px-2 ml-4'
+                  className='border rounded px-2 ml-4 mt-2'
                 >
                   update status
                 </button>
@@ -90,9 +132,21 @@ const ManageOrder = () => {
                 onClick={(e)=>e.stopPropagation()}
                 className={`menu ${form === index ? "block" : "hidden"}`}
               >
-                  <button>pending</button>
-                  <button>approved</button>
-                  <button>cancel</button>
+                <button
+                  onClick={()=> updateStatus(item._id!, "Pending")}
+                >
+                  Pending
+                </button>
+                <button
+                  onClick={()=> updateStatus(item._id!, "Approved")}
+                >
+                  Approved
+                </button>
+                <button
+                  onClick={()=> updateStatus(item._id!, "Cancel")}
+                >
+                  Cancel
+                </button>
               </div>
             </div>
           )

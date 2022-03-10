@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form'
 import { useLocation, useNavigate } from 'react-router-dom';
 import useFirebase from '../../Hooks/useFirebase';
+import "./LoginRegister.css";
 
 interface State{
     from: From
@@ -70,10 +71,10 @@ const LoginRegister = () => {
         else setLogin(true);
     }
     return (
-        <div>
+        <div className='px-5 md:px-0'>
             <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="w-2/5">
+                className="w-full lg:w-2/5">
                 <h2>Please{login ? " Login" : " Register"}</h2>
                 
                 {!login && <>

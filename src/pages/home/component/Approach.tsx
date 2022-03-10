@@ -15,10 +15,10 @@ const Approach = () => {
                 />
             </div>
             <div>
-                <h2 className='text-5xl'>
+                <h1 className="mt-5 md:mt-0">
                     Apartment With Different Approach
-                </h2>
-                <p className='text-xl text-justify my-16'>
+                </h1>
+                <p className='text-xl text-justify my-5 lg:my-16'>
                     A perfect oasis for business executives and leisure travelers seeking both short- and long-term accommodation, our studio apartment is tastefully furnished and appointed to ensure ultimate comfort.From the rooftop terrace, down to the first floor gym, every detail of eight floors provides amenities filled with convenience, class
                 </p>
                 <button className='property-btn'>

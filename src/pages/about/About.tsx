@@ -3,7 +3,7 @@ import AboutComponent from '../home/component/AboutComponent';
 
 const About = () => {
     return (
-        <div>
+        <div className='px-5 md:px-0'>
             <AboutComponent />
         </div>
     );

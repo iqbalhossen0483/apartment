@@ -9,19 +9,21 @@ interface Props{
 const PropertyComponent: FC<Props> = ({ header, data }) => {
     const navigate = useNavigate();
     return (
-        <div className='mx-16'>
+        <div>
             {header &&
-                <h1 className='mt-32 mb-14'>
+                <h1 className='mt-16 md:mt-32 mb-7 md:mb-14'>
                     {header}
                 </h1>
             }
-            <div className='grid grid-cols-3 gap-10'>
+            <div className='md:grid grid-cols-3 gap-10'>
                 {data &&
                     data.map((item, index) => {
                         return (
-                            <div key={index}>
+                            <div
+                                className='my-5 md:my-0'
+                                key={index}>
                                 <img
-                                    className='property-img object-cover'
+                                    className='property-img w-full object-cover'
                                     src={item.imgUrl}
                                     alt=""
                                 />

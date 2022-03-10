@@ -19,7 +19,7 @@ const OrderPart: FC<Props> = ({ data: property }) => {
         data.product = property!;
         data.status = "pending"
         
-        fetch("http://localhost:5000/orders", {
+        fetch(" https://apartment-sales.herokuapp.com/orders", {
             method: "POST",
             headers: {
                 "content-type": "application/json"

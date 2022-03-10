@@ -20,3 +20,33 @@
 .approach .images:hover{
     transform: scale(0.9);
 }
+.banner{
+    height: 500px;
+    width: 100wh;
+}
+.banner .slider-img{
+    height: 500px;
+    object-fit: cover;
+}
+
+@media (min-width: 768px) {
+    .md\:p-5 {
+        padding: 1.25rem/* 20px */;
+    }
+    .md\:grid {
+        display: grid;
+    }
+    .md\:h-32 {
+        height: 8rem/* 128px */;
+    }
+}
+@media (min-width: 1024px) {
+    .lg\:text-7xl {
+        font-size: 4.5rem/* 72px */;
+        line-height: 1;
+    }
+    .lg\:mx-16 {
+        margin-left: 4rem/* 64px */;
+        margin-right: 4rem/* 64px */;
+    }
+}

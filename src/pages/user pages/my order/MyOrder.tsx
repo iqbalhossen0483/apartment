@@ -1,15 +1,39 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import useFirebase from '../../../Hooks/useFirebase';
 
 const MyOrder = () => {
   const [orders, setOrder] = useState<Order[] | null>(null);
+  const [update, setUpdate] = useState(false);
   const firebase = useFirebase();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/orders/${firebase?.user?.email}`)
+    fetch(` https://apartment-sales.herokuapp.com/orders/${firebase?.user?.email}`)
       .then(res => res.json())
       .then(data => setOrder(data));
-  }, []);
+  }, [update]);
+
+
+  function updateStatus(id:string, status: string) {
+    const confirm = window.confirm("Are you Sure to Cancel?");
+
+    if (confirm) {
+      fetch(` https://apartment-sales.herokuapp.com/orders/${id}`, {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json"
+        },
+        body: JSON.stringify({ status })
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data.modifiedCount > 0) {
+            alert("order status updated");
+            if (update) setUpdate(false);
+            else setUpdate(true);
+          }
+        });
+    }
+  };
 
   return (
     <div className='my-order'>
@@ -62,6 +86,14 @@ const MyOrder = () => {
 
               <div className='text-center'>
                 <p>{item.status}</p>
+                {item.status !== "Cancel" &&
+                  <button
+                  onClick={()=> updateStatus(item._id!, "Cancel")}
+                  className='border rounded px-2 ml-4 mt-2'
+                >
+                  Cancel
+                  </button>
+                }
               </div>
             </div>
           )
