@@ -43,6 +43,12 @@
   .spinner{
     @apply h-full flex justify-center items-center text-xl
   }
+  .scroll-to-top{
+    @apply fixed right-5 bottom-20
+  }
+  .scroll-to-top p{
+    @apply w-10 h-10 p-3 text-2xl rounded-full shadow-xl bg-primary text-white font-semibold flex justify-center items-center cursor-pointer
+  }
 
   /* header component */
   .header{
@@ -55,7 +61,7 @@
 
   /* banner section */
   .banner{
-    @apply  relative
+    @apply  relative mb-16
   }
   .banner .caption-wrapper{
     @apply absolute top-0 left-0 w-full h-full bg-light-gray text-right py-14 px-3 lg:px-10 lg:grid grid-cols-4
@@ -94,7 +100,7 @@
 
   /* about */
   .about{
-    @apply lg:grid grid-cols-2 gap-6 my-12 items-center mt-20
+    @apply lg:grid grid-cols-2 gap-6 items-center mt-20
   }
 
 

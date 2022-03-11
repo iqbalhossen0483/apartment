@@ -20,6 +20,7 @@ import MyProfile from "./pages/user pages/my profile/MyProfile";
 import Wishlist from "./pages/user pages/wishlist/Wishlist";
 import PrivateRouter from "./authenticate/PrivateRouter";
 import AdminRoute from "./authenticate/AdminRoute";
+import ScrollToTop from "./utilitize/ScrollToTop";
 
 function App() {
   return (
@@ -53,6 +54,7 @@ function App() {
         {/* not found route */}
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <ScrollToTop />
       <Footer />
     </div>
   );

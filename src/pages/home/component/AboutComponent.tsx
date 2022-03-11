@@ -1,25 +1,27 @@
 import { useState } from "react";
 
 const AboutComponent = () => {
-    const [doAnimate, setDoanimate] = useState(false);
-    const item = document.querySelector(".about-img");
+    const [rightAnimate, setRightAnimate] = useState(false);
+    const item1 = document.querySelector(".about-img");
     const observer = new IntersectionObserver((e) => {
-        if (e[0].isIntersecting) {
-            setDoanimate(true);
-        }
-        else {
-            setDoanimate(false);
+        if (e[0]) {
+            if (e[0].isIntersecting) {
+                setRightAnimate(true);
+            }
+            else {
+                setRightAnimate(false);
+            }
         }
     });
     
-    if (item) {
-        observer.observe(item);
+    if (item1) {
+        observer.observe(item1);
     };
 
     return (
         <div className='about overflow-hidden'>
             <img
-                className='z-0'
+                className="z-0"
                 src="https://dexico.templatekit.co/wp-content/uploads/sites/26/2020/09/modern-house-exterior-1025x1536.jpg"
                 alt=""
             />
@@ -45,7 +47,7 @@ const AboutComponent = () => {
                     </div>
                 </div>
                 <img
-                    className={`about-img ${doAnimate && "side-animate"}`}
+                    className={`about-img ${rightAnimate && "right-animate"}`}
                     src="https://dexico.templatekit.co/wp-content/uploads/sites/26/2020/09/contemporary-design-living-houses-modern-luxury-apartments-buildings--1024x682.jpg"
                     alt=""
                 />

@@ -1,4 +1,4 @@
-.property-img, .about img, .property-btn, .approach >div{
+.property-img,.about img, .property-btn, .approach >div{
   transition: all 0.3s linear;
 }
 .property-img:hover{
@@ -31,12 +31,12 @@
     }
 }
 
-.side-animate{
+.right-animate{
     transition: all 1s ease-in-out;
-    animation: sideAnimate 1s ease-in-out;
+    animation: leftAnimate 1s ease-in-out;
 }
 
-@keyframes sideAnimate {
+@keyframes leftAnimate {
     0%{
         margin-left: 100%;
     }
