@@ -1,7 +1,22 @@
+import { useState } from "react";
 
 const Approach = () => {
+    const [doAnimate, setDoanimate] = useState(false);
+    const item = document.querySelector(".approach");
+    const observer = new IntersectionObserver((e) => {
+        if (e[0].isIntersecting) {
+            setDoanimate(true);
+        }
+        else {
+            setDoanimate(false);
+        }
+    });
+    
+    if (item) {
+        observer.observe(item);
+    }
     return (
-        <div className='approach'>
+        <div className={`approach ${doAnimate && "approach-animate"}`}>
             <div className="images">
                 <img
                     className="h-full"

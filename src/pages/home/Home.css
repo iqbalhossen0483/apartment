@@ -17,9 +17,34 @@
 .property-btn:hover{
     transform: scale(0.8);
 }
-.approach .images:hover{
-    transform: scale(0.9);
+.approach-animate .images{
+    transition: all 1s ease-in-out;
+    animation: doAnimate 1s ease-in-out;
 }
+
+@keyframes doAnimate {
+    0%{
+        transform: scale(0.7);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+
+.side-animate{
+    transition: all 1s ease-in-out;
+    animation: sideAnimate 1s ease-in-out;
+}
+
+@keyframes sideAnimate {
+    0%{
+        margin-left: 100%;
+    }
+    100%{
+        margin-left: 0;
+    }
+}
+
 .banner{
     height: 500px;
     width: 100wh;
