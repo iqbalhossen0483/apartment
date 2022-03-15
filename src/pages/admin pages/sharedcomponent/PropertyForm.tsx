@@ -1,6 +1,5 @@
 import { FC, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import useFirebase from '../../../Hooks/useFirebase';
 
 interface Props{
   propertyData?: Property | null;
@@ -9,7 +8,7 @@ interface Props{
 }
 
 const PropertyForm: FC<Props> = ({ propertyData = null, action, header }) => {
-  const { handleSubmit, register, reset } = useForm<Property>();
+  const { handleSubmit, register } = useForm<Property>();
   const [isRequired, setIsRequired] = useState<boolean>(true);
 
   useEffect(() => {
@@ -19,7 +18,7 @@ const PropertyForm: FC<Props> = ({ propertyData = null, action, header }) => {
     else {
       setIsRequired(false);
     }
-  }, []);
+  }, [header]);
 
 
   function onSubmit(data: Property) {
@@ -78,9 +77,10 @@ const PropertyForm: FC<Props> = ({ propertyData = null, action, header }) => {
       />
       <p>Image:</p>
       <input
+        type="file"
+        className='input-img'
         {...register("img")}
         placeholder="property image"
-        type="file"
       />
       <textarea
         className='col-span-3'

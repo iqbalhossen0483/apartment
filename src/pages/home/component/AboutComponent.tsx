@@ -21,8 +21,8 @@ const AboutComponent = () => {
     return (
         <div className='about overflow-hidden'>
             <img
-                className="z-0"
-                src="https://dexico.templatekit.co/wp-content/uploads/sites/26/2020/09/modern-house-exterior-1025x1536.jpg"
+                className="z-0 h-full object-cover"
+                src="https://i.ibb.co/tx9SCq6/shutterstock-169987028-720x400.jpg"
                 alt=""
             />
             <div className='text-xl'>
@@ -48,7 +48,7 @@ const AboutComponent = () => {
                 </div>
                 <img
                     className={`about-img ${rightAnimate && "right-animate"}`}
-                    src="https://dexico.templatekit.co/wp-content/uploads/sites/26/2020/09/contemporary-design-living-houses-modern-luxury-apartments-buildings--1024x682.jpg"
+                    src="https://i.ibb.co/P6n1250/2014-08-12-00022-720x400.jpg"
                     alt=""
                 />
             </div>

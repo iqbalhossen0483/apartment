@@ -20,12 +20,12 @@ const Approach = () => {
             <div className="images">
                 <img
                     className="h-full"
-                    src="https://dexico.elipso.site/wp-content/uploads/sites/14/2020/09/modern-architectural-house-facade.jpg"
+                    src="https://i.ibb.co/s1v9hyC/Layer-24-720x400.jpg"
                     alt=""
                 />
                 <img
                     className="float-img"
-                    src="https://dexico.templatekit.co/wp-content/uploads/sites/26/2020/09/simple-retro-interior-concept-1024x682.jpg"
+                    src="https://i.ibb.co/QCybVVM/shutterstock-128098442-720x400.jpg"
                     alt=""
                 />
             </div>
