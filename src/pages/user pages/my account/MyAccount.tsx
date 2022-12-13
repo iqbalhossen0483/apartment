@@ -6,7 +6,7 @@ const MyAccount = () => {
   const location = useLocation();
   return (
     <div className='my-account-container'>
-      <div className='menus-wrapper'>
+      <div className='menus-wrapper text-white'>
         <div className='menus'>
           <NavLink to='profile'>PROFILE</NavLink>
           <NavLink to='myorder'>MY ORDER</NavLink>
