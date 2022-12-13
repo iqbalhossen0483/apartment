@@ -2,208 +2,278 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base{
-  h1,h2,h3{
-    @apply text-center font-semibold
+@layer base {
+  h1,
+  h2,
+  h3 {
+    @apply text-center font-medium;
   }
-  h1{
-    @apply text-3xl lg:text-5xl
+  h1 {
+    @apply text-xl lg:text-3xl;
   }
-  h2{
-    @apply text-3xl
+  h2 {
+    @apply text-3xl;
   }
-  h3{
-    @apply text-2xl
+  h3 {
+    @apply text-2xl;
   }
-};
+  #root {
+    @apply bg-gray-50;
+  }
+}
 
-@layer  components{
-
-  form{
-    @apply grid grid-cols-3 justify-center items-center mx-auto border rounded my-10  p-10
+@layer components {
+  form {
+    @apply grid grid-cols-3 justify-center items-center mx-auto shadow-lg rounded my-10  
+    py-7 px-5 gap-x-1 gap-y-2 bg-white;
   }
-  form h2{
-    @apply mb-4 col-span-3
+  form h2 {
+    @apply mb-4 col-span-3 text-lg;
   }
-  form p{
-    @apply text-xl font-medium
+  form p {
+    @apply font-medium;
   }
-  form input, form textarea{
-    @apply text-xl py-1 px-3 border rounded my-2 col-span-2 focus:outline-none
+  form input,
+  form textarea {
+    @apply py-1 px-3 border rounded col-span-2 focus:outline-none;
   }
-  form button, .btn{
-    @apply border rounded px-7 py-2 text-xl bg-primary text-white mt-4 col-span-3 w-fit mx-auto hover:bg-white hover:text-primary font-semibold
+  .btn {
+    @apply border rounded px-7 py-1 bg-primary text-white col-span-3 w-fit mx-auto hover:bg-white hover:text-primary font-semibold;
   }
-  form button:disabled{
-    @apply cursor-not-allowed
+  form button:disabled {
+    @apply cursor-not-allowed;
   }
-  button:disabled{
-    @apply bg-gray cursor-not-allowed
+  button:disabled {
+    @apply bg-gray-300 cursor-not-allowed;
   }
-  .spinner{
-    @apply h-full flex justify-center items-center text-xl
+  .google-btn {
+    @apply col-span-3 flex gap-1 items-center;
   }
-  .scroll-to-top{
-    @apply fixed right-5 bottom-20
+  .spinner {
+    @apply h-full flex justify-center items-center text-xl;
   }
-  .scroll-to-top p{
-    @apply w-10 h-10 p-3 text-2xl rounded-full shadow-xl bg-primary text-white font-semibold flex justify-center items-center cursor-pointer
+  .scroll-to-top {
+    @apply fixed right-5 bottom-20;
   }
-  .input-img{
-    @apply border-none file:mr-6 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100
+  .scroll-to-top p {
+    @apply w-10 h-10 p-3 text-2xl rounded-full shadow-xl bg-primary text-white font-semibold flex justify-center items-center cursor-pointer;
   }
-
+  .input-img {
+    @apply border-none file:mr-6 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100;
+  }
 
   /* header component */
-  .header{
-    @apply hidden lg:grid grid-cols-5 px-16 py-3 bg-white sticky top-0 z-50 justify-center items-center
+  .header {
+    @apply flex gap-5 px-16 py-3 bg-white sticky top-0 z-50 items-center
+    justify-between;
+  }
+  .menu-container {
+    @apply gap-y-2 lg:gap-y-0 gap-x-3
+    flex-col absolute left-0 top-full bg-primary text-white h-[90vh] w-2/4 md:w-[33%] pl-5 pt-8
+    lg:pt-0 lg:pl-0 lg:static lg:h-fit lg:w-fit lg:flex-row lg:items-center 
+    lg:justify-between lg:bg-white lg:text-gray-800;
+  }
+  .menu-container .menus {
+    @apply flex flex-col gap-y-2 lg:gap-y-0 lg:flex-row items-center gap-x-5;
   }
 
-  .header .menus a, .header .menus button{
-    @apply px-3 font-medium
+  .menu-container .menus a,
+  .menu-container .menus button {
+    @apply text-sm lg:text-base font-medium w-full text-left lg:w-fit;
+  }
+  .right-menus {
+    @apply flex w-full flex-col justify-start gap-2 lg:flex-row lg:items-center;
   }
 
   /* banner section */
-  .banner{
-    @apply  relative mb-16
+  .banner {
+    @apply relative mb-16;
   }
-  .banner .caption-wrapper{
-    @apply absolute top-0 left-0 w-full h-full bg-light-gray text-right py-14 px-3 lg:px-10 lg:grid grid-cols-4
+  .banner .caption-wrapper {
+    @apply absolute top-0 left-0 w-full h-full bg-[#2a282856] text-right py-14 px-3 
+    lg:px-10 lg:grid grid-cols-4;
   }
-  .search-wrapper{
-    @apply bg-white rounded-b shadow-2xl absolute top-full right-0 lg:right-7 z-40 w-full lg:w-3/5 mx-auto text-center overflow-auto max-h-96 mt-1
-  } 
-  .search-wrapper .item{
-    @apply grid grid-cols-3 gap-3 py-3 border-b items-center text-xl md:text-2xl
+  .search-wrapper {
+    @apply bg-white rounded-b shadow-2xl absolute top-full right-0 z-40 w-full 
+    text-center overflow-auto max-h-96;
+  }
+  .search-wrapper .item {
+    @apply grid grid-cols-3 gap-3 border-b items-center text-xl px-3 py-2;
   }
 
   /* properties */
-  .price{
-    @apply text-xl font-semibold bg-primary px-5 py-2 w-fit mt-5 mb-2 text-white
+  .price {
+    @apply text-lg font-medium bg-primary px-5 py-2 w-fit mt-5 mb-2 text-white rounded;
   }
-  .see-more-btn{
-    @apply text-xl hover:bg-primary px-4 py-1 hover:text-white rounded-3xl ml-5 flex justify-between items-center border
+  .see-more-btn {
+    @apply text-xl hover:bg-primary px-4 py-1 hover:text-white rounded-3xl ml-5 flex
+    justify-between items-center border;
   }
-  .see-more-btn .arrow{
-    @apply text-3xl hidden
+  .see-more-btn .arrow {
+    @apply text-3xl hidden;
+  }
+  .property {
+    @apply my-5 md:my-0 bg-white shadow rounded-b;
   }
 
   /* approach */
-  .approach{
-    @apply lg:grid grid-cols-2 my-32 gap-20
+  .approach {
+    @apply lg:grid grid-cols-2 my-32 gap-20;
   }
-  .approach > div{
-    @apply relative
+  .approach > div {
+    @apply relative;
   }
-  .approach div .float-img{
-    @apply absolute top-28 left-52 z-50 w-96 hidden lg:block
+  .approach div .float-img {
+    @apply absolute top-28 -right-16 z-50 w-[20rem] hidden lg:block hover:scale-90 cursor-pointer;
   }
-  .property-btn{
-    @apply text-white bg-primary px-7 py-2 text-xl mt-5
+  .property-btn {
+    @apply text-white bg-primary px-7 py-2 text-xl mt-5 rounded;
   }
 
   /* about */
-  .about{
-    @apply lg:grid grid-cols-2 gap-6 items-center mt-20
+  .about {
+    @apply lg:grid grid-cols-2 gap-6 items-center mt-20;
   }
-
 
   /* deshboard */
-  .deshboard-container, .my-account-container{
-    @apply grid grid-cols-6 gap-5 min-h-set
-  }
-  .deshboard-container .menus, .my-account-container .menus{
-    @apply  pl-5 py-10 font-semibold border-gray flex flex-col
-  }
-  .deshboard-container .menus a{
-    @apply my-2 leading-5
-  }
-  .deshboard-container .front-page, .my-account-container .front-page{
-    @apply flex justify-center items-center h-full text-3xl font-semibold
+  .my-account-container {
+    @apply grid grid-cols-6 gap-5 min-h-[79vh];
   }
 
-  /* manage property */
-  .manage-property{
-    @apply m-10 border rounded p-5 text-center
+  .deshboard .menus-wrapper {
+    @apply bg-primary w-[250px] text-white fixed top-0 left-0 h-[100vh];
   }
-  .manage-property .manage-header{
-    @apply grid grid-cols-3 gap-5 pb-5 text-xl font-medium items-center
+  .deshboard a {
+    @apply block;
   }
-  .manage-property-item{
-    @apply grid grid-cols-4 gap-5 py-5 text-xl border-t
+  .deshboard .arrow-icon {
+    @apply fixed z-30 top-16 text-3xl lg:hidden;
   }
-  .manage-property-btn{
-    @apply hidden transition-all
+  .my-account-container .menus-wrapper {
+    @apply bg-primary w-[200px];
   }
-  .manage-property-item:hover .manage-property-btn{
-    @apply block
+  .deshboard .menus-wrapper .menus,
+  .my-account-container .menus {
+    @apply pl-5 py-5 lg:py-10 border-gray-300 flex flex-col text-sm font-medium space-y-2
+    fixed top-14 lg:top-12 left-0;
+  }
+  .deshboard-container .front-page,
+  .my-account-container .front-page {
+    @apply flex justify-center items-center h-full text-xl text-gray-600 font-medium;
   }
 
   /* manage user */
-  .manage-user, .manage-order{
-    @apply m-5 mt-10 text-xl border rounded p-5
+  .manage-user,
+  .manage-order,
+  .manage-property {
+    @apply w-[90%] my-10 shadow;
   }
-  .manage-user .item, .manage-order .item{
-    @apply grid grid-cols-3 gap-6 py-5
+  .manage-user .menu,
+  .manage-order .menu {
+    @apply bg-white rounded z-30 shadow absolute -top-5 right-3;
   }
-  .manage-user .item .menu{
-    @apply bg-white rounded z-30 shadow absolute -top-5 right-3
-  }
-  .manage-user .item .menu button{
-    @apply block px-5 py-2 hover:bg-slate-50 w-full
+  .manage-user .menu button,
+  .manage-order .menu button {
+    @apply block px-5 py-2 hover:bg-slate-50 w-full;
   }
 
   /* manage order */
-  .manage-order .order{
-    @apply grid grid-cols-5 py-3 gap-5 border-t relative
+  .manage-order .order {
+    @apply grid grid-cols-5 py-3 gap-5 border-t relative;
   }
-  .manage-order .order .menu{
-    @apply bg-white rounded z-30 shadow absolute top-0 right-0
+  .manage-order .order .menu {
+    @apply bg-white rounded z-30 shadow absolute top-0 right-0;
   }
-  .manage-order .order .menu button{
-    @apply block px-5 py-2 hover:bg-slate-50 w-full
+  .manage-order .order .menu button {
+    @apply block px-5 py-2 hover:bg-slate-50 w-full;
   }
-
 
   /* property details */
-  .property-details-container{
-    @apply px-5 lg:px-32 lg:grid grid-cols-2 gap-5 mt-14 overflow-hidden
+  .property-details-container {
+    @apply mx-5 lg:mx-32 lg:grid grid-cols-2 gap-5 mt-14 overflow-hidden bg-white md:p-5
+    rounded shadow-sm;
   }
-  .property-img-details{
-    @apply w-full h-96 object-cover
+  .property-img-details {
+    @apply w-full h-96 object-cover hover:scale-150;
   }
 
   /* my account */
-  .my-account-container{
-    @apply grid-cols-6
+  .my-account-container {
+    @apply grid-cols-6;
   }
 
   /* profile */
-  .profile-container .item{
-    @apply grid grid-cols-6 my-3 border-b border-gray pb-2 text-xl
+  .profile-container .item {
+    @apply grid grid-cols-6 my-3 border-b border-gray-300 pb-2;
   }
-  .profile-container .item p{
-    @apply col-span-4
+  .profile-container .item p {
+    @apply col-span-4;
   }
-  .profile-container .item span{
-    @apply col-span-2
+  .profile-container .item span {
+    @apply col-span-2;
   }
 
   /* my order */
-  .my-order{
-    @apply m-5 mt-10 p-5 border rounded
+  .my-order {
+    @apply m-5 mt-10 md:p-5 border rounded overflow-auto;
   }
-  .my-order .item{
-    @apply grid grid-cols-4 gap-5 py-3 text-xl
+  .my-order .item {
+    @apply grid grid-cols-4 gap-5 py-3;
   }
-};
+  table {
+    @apply bg-white w-full md:w-[80%] mx-auto rounded;
+  }
+  tr {
+    @apply border-b;
+  }
+  thead tr th {
+    @apply text-sm font-medium;
+  }
+  tbody tr:last-child {
+    @apply border-b-0;
+  }
+  tbody tr:nth-child(odd) {
+    @apply bg-gray-50;
+  }
+  tbody tr:nth-child(even) {
+    @apply hover:bg-gray-50;
+  }
+  td,
+  th {
+    @apply px-4 py-2 text-center;
+  }
+  .closebtn {
+    @apply lg:hidden absolute top-3 right-3 bg-gray-300 h-7 w-7 rounded-2xl flex justify-center
+    items-center text-gray-500 cursor-pointer;
+  }
+}
 
-@layer utilities{
-  .price::before{
+@layer utilities {
+  .price::before {
     content: "৳";
     height: 20px;
     width: 20px;
     font-size: 1.4em;
     margin-right: 4px;
   }
-};
+}
+.approach div .float-img,
+.property-img-details,
+.btn {
+  transition: all 0.5s linear;
+}
+.my-account-container .menus .active,
+.deshboard .active {
+  color: blanchedalmond;
+  text-decoration: underline;
+}
+.active {
+  color: blanchedalmond;
+  text-decoration: underline;
+}
+@media (min-width: 1024px) {
+  .active {
+    color: #3c6e71;
+    text-decoration: underline;
+  }
+}

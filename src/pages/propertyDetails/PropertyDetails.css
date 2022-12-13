@@ -1,6 +1,0 @@
-.property-img-details{
-    transition: all 0.5s linear;
-}
-.property-img-details:hover{
-    transform: scale(2);
-}

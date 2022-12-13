@@ -1,11 +1,9 @@
-import React from 'react'
+import React from "react";
 
-type Props = {}
+type Props = {};
 
 const Wishlist = (props: Props) => {
-  return (
-    <div>Wishlist</div>
-  )
-}
+  return <div>Wishlist</div>;
+};
 
-export default Wishlist
+export default Wishlist;

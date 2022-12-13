@@ -1,51 +1,31 @@
-import useFirebase from "../../../Hooks/useFirebase";
 import PropertyForm from "../sharedcomponent/PropertyForm";
 
-
 const AddProperty = () => {
-  
-  function addProperty(data: Property) {
-    if (data.img?.length === 0) {
-      return alert("Image is required");
-    };
+  async function addProperty(data: Property): Promise<{ message: string }> {
     const form = new FormData();
+    Object.entries(data).forEach(([key, value]) => {
+      if (key === "img") form.append("img", data.img[0]);
+      else form.append(key, value);
+    });
 
-    form.append("name", data.name);
-    form.append("price", data.price.toString());
-    form.append("location", data.location);
-    form.append("room", data.room.toString());
-    form.append("bed", data.bed.toString());
-    form.append("area", data.area);
-    form.append("description", data.description);
-    if (data.img) {
-      form.append("img", data.img[0]);
-    }
-    else {
-      return alert("image is required");
-    };
-    fetch(" https://apartment-sales.herokuapp.com/property", {
-      method: "POST",
-      body: form
-    })
-      .then(res => res.json())
-      .then(data => {
-        if (data.insertedId) {
-          alert("property added");
-        }
-      })
-      .catch(err => {
-        
-      });
+    const res = await fetch(
+      "https://myserver-production-ddf8.up.railway.app/appartment/property",
+      {
+        method: "POST",
+        body: form,
+      }
+    );
+    const json = await res.json();
+    if (json.insertedId) {
+      return { message: "property added" };
+    } else return { message: "Unable to add, Try again" };
   }
-  
+
   return (
     <div className='px-10'>
-      <PropertyForm
-        header="Add Property"
-        action={addProperty}
-      />
+      <PropertyForm header='Add Property' action={addProperty} />
     </div>
   );
-}
+};
 
-export default AddProperty
+export default AddProperty;

@@ -1,21 +1,22 @@
-import { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom';
-import useFirebase from '../../../Hooks/useFirebase';
-import PropertyForm from '../sharedcomponent/PropertyForm'
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import PropertyForm from "../sharedcomponent/PropertyForm";
 
-const UpdateProper = () => {
+const UpdateProperty = () => {
   const [property, setProperty] = useState<Property | null>(null);
   const [update, setUpdate] = useState(false);
   const { id } = useParams();
-  const firebase = useFirebase();
   const navigate = useNavigate();
 
-    useEffect(() => {
-        fetch(` https://apartment-sales.herokuapp.com/property/${id}`)
-            .then(res => res.json())
-            .then(data => setProperty(data));
-    }, []);
-  
+  useEffect(() => {
+    if (!id) return;
+    fetch(
+      `https://myserver-production-ddf8.up.railway.app/appartment/property/${id}`
+    )
+      .then((res) => res.json())
+      .then((data) => setProperty(data));
+  }, [id]);
+
   function makeFormData(data: Property): void | FormData {
     const form = new FormData();
     Object.keys(data).forEach((item) => {
@@ -33,12 +34,11 @@ const UpdateProper = () => {
       setUpdate(true);
       form.append("img", data.img[0]);
       form.append("imgId", data.imgUrl!);
-    };
+    }
 
     if (update) {
-       return form;
-    }
-    else {
+      return form;
+    } else {
       return alert("You didn't update any field");
     }
   }
@@ -46,12 +46,15 @@ const UpdateProper = () => {
   function updateProperty(data: Property) {
     const updateData = makeFormData(data);
     if (updateData) {
-      fetch(` https://apartment-sales.herokuapp.com/property/${id}`, {
-        method: "PUT",
-        body: updateData
-      })
-        .then(res => res.json())
-        .then(data => {
+      fetch(
+        `https://myserver-production-ddf8.up.railway.app/appartment/property/${id}`,
+        {
+          method: "PUT",
+          body: updateData,
+        }
+      )
+        .then((res) => res.json())
+        .then((data) => {
           if (data.modifiedCount > 0) {
             alert("Update successfull");
             navigate("/deshboard/manageproperty");
@@ -68,6 +71,6 @@ const UpdateProper = () => {
       />
     </div>
   );
-}
+};
 
-export default UpdateProper
+export default UpdateProperty;
