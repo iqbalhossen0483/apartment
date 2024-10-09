@@ -6,22 +6,19 @@ const ManageOrder = () => {
   const [update, setUpdate] = useState(false);
 
   useEffect(() => {
-    fetch("https://myserver-production-ddf8.up.railway.app/appartment/orders")
+    fetch("https://server.switchcafebd.com/appartment/orders")
       .then((res) => res.json())
       .then((data) => setOrder(data));
   }, [update]);
 
   function updateStatus(id: string, status: string) {
-    fetch(
-      `https://myserver-production-ddf8.up.railway.app/appartment/orders/${id}`,
-      {
-        method: "PUT",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({ status }),
-      }
-    )
+    fetch(`https://server.switchcafebd.com/appartment/orders/${id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ status }),
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {
@@ -35,9 +32,7 @@ const ManageOrder = () => {
 
   function filterOrder(text: string) {
     if (text) {
-      fetch(
-        `https://myserver-production-ddf8.up.railway.app/appartment/orders/filter/${text}`
-      )
+      fetch(`https://server.switchcafebd.com/appartment/orders/filter/${text}`)
         .then((res) => res.json())
         .then((data) => setOrder(data));
     } else {

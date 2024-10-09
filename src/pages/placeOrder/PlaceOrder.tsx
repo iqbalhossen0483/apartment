@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import OrderPart from "./component/OrderPart";
 import ProductPart from "./component/ProductPart";
@@ -9,9 +9,7 @@ const PlaceOrder = () => {
 
   useEffect(() => {
     if (id) {
-      fetch(
-        `https://myserver-production-ddf8.up.railway.app/appartment/property/${id}`
-      )
+      fetch(`https://server.switchcafebd.com/appartment/property/${id}`)
         .then((res) => res.json())
         .then((data) => setProperty(data));
     }

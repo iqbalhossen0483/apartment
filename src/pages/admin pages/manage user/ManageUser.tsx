@@ -6,22 +6,19 @@ const ManageUser = () => {
   const [update, setUpdate] = useState(false);
 
   useEffect(() => {
-    fetch("https://myserver-production-ddf8.up.railway.app/appartment/users")
+    fetch("https://server.switchcafebd.com/appartment/users")
       .then((res) => res.json())
       .then((data) => setUsers(data));
   }, [update]);
 
   function updateUser(email: string, role: string) {
-    fetch(
-      `https://myserver-production-ddf8.up.railway.app/appartment/users/${email}`,
-      {
-        method: "PUT",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({ role }),
-      }
-    )
+    fetch(`https://server.switchcafebd.com/appartment/users/${email}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ role }),
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {

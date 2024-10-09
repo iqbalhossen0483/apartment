@@ -8,7 +8,7 @@ const MyOrder = () => {
 
   useEffect(() => {
     fetch(
-      `https://myserver-production-ddf8.up.railway.app/appartment/orders/${firebase?.user?.email}`
+      `https://server.switchcafebd.com/appartment/orders/${firebase?.user?.email}`
     )
       .then((res) => res.json())
       .then((data) => setOrder(data));
@@ -18,16 +18,13 @@ const MyOrder = () => {
     const confirm = window.confirm("Are you Sure to Cancel?");
 
     if (confirm) {
-      fetch(
-        `https://myserver-production-ddf8.up.railway.app/appartment/orders/${id}`,
-        {
-          method: "PUT",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify({ status }),
-        }
-      )
+      fetch(`https://server.switchcafebd.com/appartment/orders/${id}`, {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ status }),
+      })
         .then((res) => res.json())
         .then((data) => {
           if (data.modifiedCount > 0) {

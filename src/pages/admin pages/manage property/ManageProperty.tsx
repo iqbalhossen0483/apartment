@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const ManageProperty = () => {
@@ -6,7 +6,7 @@ const ManageProperty = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("https://myserver-production-ddf8.up.railway.app/appartment/property")
+    fetch("https://server.switchcafebd.com/appartment/property")
       .then((res) => res.json())
       .then((data) => setProperty(data));
   }, []);
@@ -14,16 +14,13 @@ const ManageProperty = () => {
   function deleteProperty(id: string, imgId: string) {
     const confirm = window.confirm("Are you sure to delete?");
     if (confirm) {
-      fetch(
-        `https://myserver-production-ddf8.up.railway.app/appartment/property/${id}`,
-        {
-          method: "DELETE",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify({ imgId }),
-        }
-      )
+      fetch(`https://server.switchcafebd.com/appartment/property/${id}`, {
+        method: "DELETE",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ imgId }),
+      })
         .then((res) => res.json())
         .then((data) => {
           if (data.deletedCount > 0) {

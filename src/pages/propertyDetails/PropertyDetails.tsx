@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 const PropertyDetails = () => {
@@ -8,9 +8,7 @@ const PropertyDetails = () => {
 
   useEffect(() => {
     if (!id) return;
-    fetch(
-      `https://myserver-production-ddf8.up.railway.app/appartment/property/${id}`
-    )
+    fetch(`https://server.switchcafebd.com/appartment/property/${id}`)
       .then((res) => res.json())
       .then((data) => setProperty(data));
   }, [id]);

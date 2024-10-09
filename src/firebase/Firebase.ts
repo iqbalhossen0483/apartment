@@ -1,17 +1,17 @@
-import firebaseInit from "./firebaseInit";
 import {
   GoogleAuthProvider,
-  getAuth,
-  signInWithPopup,
   User,
-  onAuthStateChanged,
-  getIdToken,
   createUserWithEmailAndPassword,
-  updateProfile,
+  getAuth,
+  getIdToken,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 import { useEffect, useState } from "react";
+import firebaseInit from "./firebaseInit";
 
 interface Result {
   user: User;
@@ -63,7 +63,7 @@ const Firebase = (): FirebaseSchema => {
   }
 
   function createUser(data: DbUser) {
-    fetch("https://myserver-production-ddf8.up.railway.app/appartment/users", {
+    fetch("https://server.switchcafebd.com/appartment/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -77,9 +77,7 @@ const Firebase = (): FirebaseSchema => {
   }
 
   function getUser(email: string) {
-    fetch(
-      `https://myserver-production-ddf8.up.railway.app/appartment/users/${email}`
-    )
+    fetch(`https://server.switchcafebd.com/appartment/users/${email}`)
       .then((res) => res.json())
       .then((data) => {
         setUserFromDb(data);

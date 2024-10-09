@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import PropertyComponent from "../home/component/PropertyComponent";
 
 const Property = () => {
   const [property, setProperty] = useState<Property[] | null>(null);
 
   useEffect(() => {
-    fetch("https://myserver-production-ddf8.up.railway.app/appartment/property")
+    fetch("https://server.switchcafebd.com/appartment/property")
       .then((res) => res.json())
       .then((data) => setProperty(data));
   }, []);

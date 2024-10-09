@@ -9,9 +9,7 @@ const Home = () => {
   const [property, setProperty] = useState<Property[] | null>(null);
 
   useEffect(() => {
-    fetch(
-      "https://myserver-production-ddf8.up.railway.app/appartment/property/home"
-    )
+    fetch("https://server.switchcafebd.com/appartment/property/home")
       .then((res) => res.json())
       .then((data) => setProperty(data));
   }, []);

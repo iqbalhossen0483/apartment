@@ -10,9 +10,7 @@ const UpdateProperty = () => {
 
   useEffect(() => {
     if (!id) return;
-    fetch(
-      `https://myserver-production-ddf8.up.railway.app/appartment/property/${id}`
-    )
+    fetch(`https://server.switchcafebd.com/appartment/property/${id}`)
       .then((res) => res.json())
       .then((data) => setProperty(data));
   }, [id]);
@@ -46,13 +44,10 @@ const UpdateProperty = () => {
   function updateProperty(data: Property) {
     const updateData = makeFormData(data);
     if (updateData) {
-      fetch(
-        `https://myserver-production-ddf8.up.railway.app/appartment/property/${id}`,
-        {
-          method: "PUT",
-          body: updateData,
-        }
-      )
+      fetch(`https://server.switchcafebd.com/appartment/property/${id}`, {
+        method: "PUT",
+        body: updateData,
+      })
         .then((res) => res.json())
         .then((data) => {
           if (data.modifiedCount > 0) {

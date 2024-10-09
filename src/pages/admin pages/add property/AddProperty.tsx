@@ -9,7 +9,7 @@ const AddProperty = () => {
     });
 
     const res = await fetch(
-      "https://myserver-production-ddf8.up.railway.app/appartment/property",
+      "https://server.switchcafebd.com/appartment/property",
       {
         method: "POST",
         body: form,

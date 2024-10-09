@@ -1,10 +1,10 @@
-import { bannerIamges } from "../services/services";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import { DebounceInput } from "react-debounce-input";
 import { useState } from "react";
+import { DebounceInput } from "react-debounce-input";
 import { useNavigate } from "react-router-dom";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
+import { bannerIamges } from "../services/services";
 
 const Banner: () => JSX.Element = () => {
   const [property, setProperty] = useState<Property[] | null>();
@@ -13,9 +13,7 @@ const Banner: () => JSX.Element = () => {
   function handleSearch(text: string) {
     if (text.length === 0) return setProperty(null);
 
-    fetch(
-      `https://myserver-production-ddf8.up.railway.app/appartment/property/search/${text}`
-    )
+    fetch(`https://server.switchcafebd.com/appartment/property/search/${text}`)
       .then((res) => res.json())
       .then((data) => {
         setProperty(data);
